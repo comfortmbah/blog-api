@@ -1,3 +1,6 @@
+import { AppError } from "../utils/AppError.js";
+
+
 export const posts = [
   {
     id: 1,
@@ -22,7 +25,7 @@ export const getPost = (req, res) => {
   const post = posts.find((post) => post.id === id);
 
   if (!post) {
-    res.status(404).json({ message: "Post Not Found"})
+    throw new AppError("Post Not Found", 404);
   }
 
   res.json(post);
