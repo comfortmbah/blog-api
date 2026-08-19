@@ -15,4 +15,15 @@ export const posts = [
 
 export const getPosts = (req, res) => {
   res.json(posts);
-} 
+}
+
+export const getPost = (req, res) => {
+  const id = Number(req.params.id);
+  const post = posts.find((post) => post.id === id);
+
+  if (!post) {
+    res.status(404).json({ message: "Post Not Found"})
+  }
+
+  res.json(post);
+}
