@@ -15,4 +15,4 @@ export const posts = [
 
 export const getPosts = (req, res) => {
   res.json(posts);
-}
+} 
