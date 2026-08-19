@@ -10,6 +10,6 @@ app.use("/api/posts", postRoutes);
 
 app.use(errorHandler);
 
-app.listen(6000, () => {
-  console.log("Server running on port 6000");
+app.listen(8000, () => {
+  console.log("Server running on port 8000");
 })
