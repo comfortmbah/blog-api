@@ -49,3 +49,24 @@ export const createPost = (req, res) => {
 
   res.status(201).json({ message: "Post created successfully!", newPost });
 }
+
+export const updatePost = (req, res) => {
+  const id = Number(req.params.id);
+  const post = posts.find((post) => post.id === id);
+
+  if (!post) {
+    throw new AppError("Post not found", 404);
+  }
+
+  const { title, content, author } = req.body;
+
+  if (!title || !content || !author) {
+    throw new AppError("Title, content and author are required", 400);
+  }
+
+  post.title = title;
+  post.content = content;
+  post.author = author;
+
+  res.json({ message: "Post updated successfully!", post });
+}
