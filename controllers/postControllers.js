@@ -96,3 +96,17 @@ export const updatePostPartially = (req, res) => {
 
   res.json({ message: "Post updated successfully", post});
 }
+
+export const deletePost = (req, res) => {
+  const id = Number(req.params.id);
+
+  const index = posts.findIndex((post) => post.id === id);
+
+  if (index === -1) {
+    throw new AppError("Post not found", 404)
+  }
+
+  posts.splice(index, 1);
+
+  res.json({ message: "Post deleted successfully"})
+}
