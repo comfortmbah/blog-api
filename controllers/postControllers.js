@@ -30,3 +30,22 @@ export const getPost = (req, res) => {
 
   res.json(post);
 }
+
+export const createPost = (req, res) => {
+  const { title, content, author } = req.body;
+
+  if (!title || !content || !author) {
+    throw new AppError("Title, content and author required", 404);
+  }
+
+  const newPost = {
+    id: posts.length + 1,
+    title,
+    content,
+    author,
+  };
+
+  posts.push(newPost);
+
+  res.status(201).json({ message: "Post created successfully!", newPost });
+}
