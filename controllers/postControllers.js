@@ -68,5 +68,31 @@ export const updatePost = (req, res) => {
   post.content = content;
   post.author = author;
 
-  res.json({ message: "Post updated successfully!", post });
+  res.json({ message: "Post updated successfully!", post }); 
+}
+
+export const updatePostPartially = (req, res) => {
+  const id = Number(req.params.id);
+
+  const post = posts.find((post) => post.id === id);
+
+  if (!post) {
+    throw new AppError("Post not found", 404);
+  }
+
+  const { title, content, author } = req.body;
+
+  if (title !== undefined) {
+    post.title = title;
+  }
+
+  if (content !== undefined) {
+    post.content = content;
+  }
+
+  if (author !== undefined) {
+    post.author = author;
+  }
+
+  res.json({ message: "Post updated successfully", post});
 }
