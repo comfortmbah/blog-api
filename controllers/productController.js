@@ -72,3 +72,7 @@ const products = [
     category: "Electronics"
   },
 ];
+
+export const getProducts = (req, res) => {
+  res.json(products);
+}
