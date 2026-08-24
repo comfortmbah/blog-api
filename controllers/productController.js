@@ -142,3 +142,33 @@ export const updateProduct = (req, res) => {
 
   res.json({ message: "Product updated successfully!", product }); 
 }
+
+export const updateProductPartially = (req, res) => {
+  const id = Number(req.params.id);
+
+  const product = products.find((product) => product.id === id);
+
+  if (!product) {
+    throw new AppError("Product not found", 404);
+  }
+
+  const { name, description, price, category } = req.body;
+
+  if (name !== undefined) {
+    product.name = name;
+  }
+
+  if (description !== undefined) {
+    product.description = description;
+  }
+
+  if (price !== undefined) {
+    product.price = price;
+  }
+
+  if (category !== undefined) {
+    product.category = category;
+  }
+
+  res.json({ message: "Product updated successfully", product});
+}
