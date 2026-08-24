@@ -100,3 +100,23 @@ export const getProduct = (req, res) => {
 
   res.json(product);
 }
+
+export const createProduct = (req, res) => {
+  const { name, description, price, category } = req.body;
+
+  if (!name || !description || !price || !category) {
+    throw new AppError("Name, description, price and category are required", 404);
+  }
+
+  const newProduct = {
+    id: products.length + 1,
+    name,
+    description,
+    price,
+    category,
+  };
+
+  products.push(newProduct);
+
+  res.status(201).json({ message: "Product created successfully!", newProduct });
+}
