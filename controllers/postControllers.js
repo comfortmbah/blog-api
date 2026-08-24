@@ -20,48 +20,6 @@ export const posts = [
     content: "Javascript is very powerful and interesting.",
     author: "Comfort Mbah",
   },
-  {
-    id: 4,
-    title: "Learning Modules",
-    content: "Module is very powerful and interesting.",
-    author: "Seun Kuti",
-  },
-  {
-    id: 5,
-    title: "Learning React",
-    content: "React is very powerful and interesting.",
-    author: "Sylvester Joel",
-  },
-  {
-    id: 6,
-    title: "Learning CSS",
-    content: "CSS is for styling",
-    author: "Ifeanyi Joel",
-  },
-  {
-    id: 7,
-    title: "Learning HTML",
-    content: "HTML is hypertext mark up.",
-    author: "Grace Mbah",
-  },
-  {
-    id: 8,
-    title: "Learning TailwindCSS",
-    content: "TailwindCSS is commonly used for styling in REACT.",
-    author: "Sylvester Nwankwo",
-  },
-  {
-    id: 9,
-    title: "Learning Python",
-    content: "Python is very powerful and interesting.",
-    author: "Sylvester Mbah",
-  },
-  {
-    id: 10,
-    title: "Learning Typescript",
-    content: "Typescript is very powerful and interesting.",
-    author: "Grace Joel",
-  },
 ];
 
 export const getPosts = (req, res) => {
