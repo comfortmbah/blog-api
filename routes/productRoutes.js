@@ -1,5 +1,5 @@
 import express from "express"
-import { getProducts, getProduct, createProduct, updateProduct } from "../controllers/productController.js";
+import { getProducts, getProduct, createProduct, updateProduct, updateProductPartially } from "../controllers/productController.js";
 import { asyncHandler } from "../utils/asyncHandler.js"
 
 
@@ -12,6 +12,8 @@ router.get("/:id", asyncHandler(getProduct));
 router.post("/", asyncHandler(createProduct));
 
 router.put("/:id", asyncHandler(updateProduct));
+
+router.patch("/:id", asyncHandler(updateProductPartially));
 
 
 
