@@ -89,3 +89,14 @@ export const getProducts = (req, res) => {
   
   res.json({ page, limit, total, totalPages, products: paginatedProducts });
 }
+
+export const getProduct = (req, res) => {
+  const id = Number(req.params.id);
+  const product = products.find((product) => product.id === id);
+
+  if (!product) {
+    throw new AppError("Product Not Found", 404);
+  }
+
+  res.json(product);
+}
