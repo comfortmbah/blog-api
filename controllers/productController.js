@@ -120,3 +120,25 @@ export const createProduct = (req, res) => {
 
   res.status(201).json({ message: "Product created successfully!", newProduct });
 }
+
+export const updateProduct = (req, res) => {
+  const id = Number(req.params.id);
+  const product = products.find((product) => product.id === id);
+
+  if (!product) {
+    throw new AppError("Post not found", 404);
+  }
+
+  const { name, description, price, category } = req.body;
+
+  if (!name || !description || !price || !category) {
+    throw new AppError("Name, description, price and category are required", 400);
+  }
+
+  product.name = name;
+  product.description = description;
+  product.price = price;
+  product.category = category;
+
+  res.json({ message: "Product updated successfully!", product }); 
+}
