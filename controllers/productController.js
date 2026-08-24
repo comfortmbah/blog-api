@@ -74,5 +74,18 @@ const products = [
 ];
 
 export const getProducts = (req, res) => {
-  res.json(products);
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  
+  const total = products.length;
+  const totalPages = Math.ceil(total / limit);
+  
+  if (page > totalPages) {
+    throw new AppError("Page not found", 404);
+  }
+  
+  const startIndex = (page - 1) * limit;
+  const paginatedProducts = products.slice(startIndex, startIndex + limit);
+  
+  res.json({ page, limit, total, totalPages, products: paginatedProducts });
 }
