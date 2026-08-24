@@ -77,15 +77,19 @@ export const getProducts = (req, res) => {
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
   
-  const total = products.length;
+  const { category } = req.query;
+
+  const filteredProducts = category ? products.filter((product) => product.category === category) : products;
+  
+  const total = filteredProducts.length;
   const totalPages = Math.ceil(total / limit);
   
-  if (page > totalPages) {
+  if (page > totalPages && totalPages > 0) {
     throw new AppError("Page not found", 404);
   }
   
   const startIndex = (page - 1) * limit;
-  const paginatedProducts = products.slice(startIndex, startIndex + limit);
+  const paginatedProducts = filteredProducts.slice(startIndex, startIndex + limit);
   
   res.json({ page, limit, total, totalPages, products: paginatedProducts });
 }
