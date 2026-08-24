@@ -172,3 +172,17 @@ export const updateProductPartially = (req, res) => {
 
   res.json({ message: "Product updated successfully", product});
 }
+
+export const deleteProduct = (req, res) => {
+  const id = Number(req.params.id);
+
+  const index = products.findIndex((product) => product.id === id);
+
+  if (index === -1) {
+    throw new AppError("Product not found", 404)
+  }
+
+  products.splice(index, 1);
+
+  res.json({ message: "Product deleted successfully"});
+}
