@@ -25,10 +25,6 @@ export const getProductQuery = (products, query) => {
   const hasNextPage = page < totalPages;
   const hasPreviousPage = page > 1;
   
-  if (page > totalPages && totalPages > 0) {
-    throw new AppError("Page not found", 404);
-  }
-  
   const startIndex = (page - 1) * limit;
   const paginatedProducts = sortedProducts.slice(startIndex, startIndex + limit);
   
