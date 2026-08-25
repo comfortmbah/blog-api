@@ -2,6 +2,7 @@ import express from "express";
 import postRoutes from "./routes/postRoutes.js"
 import productRoutes from "./routes/productRoutes.js"
 import { errorHandler } from "./middleware/errorHandler.js";
+import productViewRoutes from "./routes/productViewRoutes.js"
 
 const app = express();
 
@@ -11,6 +12,8 @@ app.use(express.json());
 
 app.use("/api/posts", postRoutes);
 app.use("/api/products", productRoutes);
+
+app.use("/products", productViewRoutes);
 
 app.use(errorHandler);
 
