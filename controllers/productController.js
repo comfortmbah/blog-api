@@ -76,7 +76,17 @@ const products = [
 ];
 
 export const getProducts = (req, res) => {
+  const page = Number(req.query.page) || 1;
+  
+  if (page < 1) {
+    throw new AppError("Page must be greater than 0", 400);
+  }
+
   const result = getProductQuery(products, req.query);
+
+  if (result.totalPages > 0 && page > result.totalPages) {
+    throw new AppError("Page not found", 404);
+  }
 
   res.json(result);
 }
