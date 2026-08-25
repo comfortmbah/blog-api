@@ -31,5 +31,9 @@ export const getProductQuery = (products, query) => {
   return { page, limit, total, totalPages, hasNextPage, hasPreviousPage, products: paginatedProducts };
 }
 
+export const findProductById = (products, id) => {
+  return products.find((product) => product.id === id);
+}
+
 
 

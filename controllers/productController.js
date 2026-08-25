@@ -1,5 +1,5 @@
 import { AppError } from "../utils/AppError.js";
-import { getProductQuery } from "../utils/productQuery.js";
+import { getProductQuery, findProductById } from "../utils/productQuery.js";
 
 
 const products = [
@@ -77,7 +77,7 @@ const products = [
 
 export const getProducts = (req, res) => {
   const page = Number(req.query.page) || 1;
-  
+
   if (page < 1) {
     throw new AppError("Page must be greater than 0", 400);
   }
@@ -93,7 +93,7 @@ export const getProducts = (req, res) => {
   
 export const getProduct = (req, res) => {
   const id = Number(req.params.id);
-  const product = products.find((product) => product.id === id);
+  const product = findProductById(products, id);
 
   if (!product) {
     throw new AppError("Product Not Found", 404);
