@@ -1,4 +1,6 @@
 import { AppError } from "../utils/AppError.js";
+import { getProductQuery } from "../utils/productQuery.js";
+
 
 const products = [
   {
@@ -74,37 +76,11 @@ const products = [
 ];
 
 export const getProducts = (req, res) => {
-  const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 10;
-  
-  const { category, search, sort } = req.query;
+  const result = getProductQuery(products, req.query);
 
-  const filteredProducts = category ? products.filter((product) => product.category === category) : products;
-  const searchProducts = search ? filteredProducts.filter((product) => product.name.toLowerCase().includes(search.toLowerCase())) : filteredProducts;
-  
-  let sortedProducts = [...searchProducts];
-
-  if (sort === "price") {
-    sortedProducts.sort((a, b) => a.price - b.price);
-  }
-
-  if (sort === "-price") {
-    sortedProducts.sort((a, b) => b.price - a.price);
-  }
-
-  const total = sortedProducts.length;
-  const totalPages = Math.ceil(total / limit);
-  
-  if (page > totalPages && totalPages > 0) {
-    throw new AppError("Page not found", 404);
-  }
-  
-  const startIndex = (page - 1) * limit;
-  const paginatedProducts = sortedProducts.slice(startIndex, startIndex + limit);
-  
-  res.json({ page, limit, total, totalPages, products: paginatedProducts });
+  res.json(result);
 }
-
+  
 export const getProduct = (req, res) => {
   const id = Number(req.params.id);
   const product = products.find((product) => product.id === id);
