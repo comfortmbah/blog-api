@@ -1,4 +1,4 @@
-import { AppError } from "./AppError";
+
 
 export const getProductQuery = (products, query) => {
   const page = Number(query.page) || 1;
@@ -21,6 +21,9 @@ export const getProductQuery = (products, query) => {
 
   const total = sortedProducts.length;
   const totalPages = Math.ceil(total / limit);
+
+  const hasNextPage = page < totalPages;
+  const hasPreviousPage = page > 1;
   
   if (page > totalPages && totalPages > 0) {
     throw new AppError("Page not found", 404);
@@ -29,7 +32,7 @@ export const getProductQuery = (products, query) => {
   const startIndex = (page - 1) * limit;
   const paginatedProducts = sortedProducts.slice(startIndex, startIndex + limit);
   
-  return { page, limit, total, totalPages, products: paginatedProducts };
+  return { page, limit, total, totalPages, hasNextPage, hasPreviousPage, products: paginatedProducts };
 }
 
 
