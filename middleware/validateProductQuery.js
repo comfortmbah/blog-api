@@ -1,7 +1,9 @@
 import { AppError } from "../utils/AppError.js";
 
+const allowedCategories = ["Electronics", "Books", "Clothing"];
+
 export const validateProductQuery = (req, res, next) => {
-  const { page, limit, sort } = req.query;
+  const { page, limit, sort, category } = req.query;
 
   if (page !== undefined && (!Number.isInteger(Number(page)) || Number(page) < 1)) {
     throw new AppError("Page must be a positive integer", 400);
@@ -19,6 +21,10 @@ export const validateProductQuery = (req, res, next) => {
 
   if (sort !== undefined && !allowedSorts.includes(sort)) {
     throw new AppError("Invalid sort field", 400);
+  }
+
+  if (category !== undefined && !allowedCategories.includes(category)) {
+    throw new AppError("Invalid category", 400);
   }
 
   next();
