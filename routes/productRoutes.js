@@ -1,11 +1,12 @@
 import express from "express"
 import { getProducts, getProduct, createProduct, updateProduct, updateProductPartially, deleteProduct } from "../controllers/productController.js";
 import { asyncHandler } from "../utils/asyncHandler.js"
+import { validateProductQuery } from "../middleware/validateProductQuery.js";
 
 
 const router = express.Router();
 
-router.get("/", asyncHandler(getProducts));
+router.get("/", validateProductQuery, asyncHandler(getProducts));
 
 router.get("/:id", asyncHandler(getProduct));
 
