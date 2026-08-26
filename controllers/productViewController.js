@@ -5,3 +5,7 @@ export const showProducts = (req, res) => {
     products
   });
 }
+
+export const showCreateProductForm = (req, res) => {
+  res.render("products/new");
+}
