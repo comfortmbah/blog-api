@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Product</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product</title>
 </head>
+
 <body>
   <h1>Edit Product</h1>
-
 
   <form action="/products/<%= product.id %>/edit" method="POST">
 
     <div>
       <label for="name">Name</label>
-      <input 
+      <input
         type="text"
         id="name"
         name="name"
@@ -24,7 +25,7 @@
 
     <div>
       <label for="price">Price</label>
-      <input 
+      <input
         type="number"
         id="price"
         name="price"
@@ -35,7 +36,7 @@
 
     <div>
       <label for="category">Category</label>
-      <input 
+      <input
         type="text"
         id="category"
         name="category"
@@ -52,4 +53,5 @@
 
   <a href="/products">Cancel</a>
 </body>
+
 </html>
