@@ -7,7 +7,10 @@ export const showProducts = (req, res) => {
 }
 
 export const showCreateProductForm = (req, res) => {
-  res.render("products/new");
+  res.render("products/new", {
+    errors: [],
+    formData: {}
+  });
 }
 
 export const createProductFromForm = (req, res) => {
