@@ -13,7 +13,6 @@
   <% products.forEach(product => { %>
 
     <div>
-
       <a href="/products/<%= product.id %>/edit">Edit</a>
       
       <h2><%= product.name %></h2>
@@ -21,7 +20,10 @@
       <p>Price: <%= product.price %></p>
 
       <p>Category: <%= product.category %></p>
+      
     </div>
+
+    <button type="submit">Delete</button>
 
     <hr>
 
