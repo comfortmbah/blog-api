@@ -13,6 +13,9 @@
   <% products.forEach(product => { %>
 
     <div>
+
+      <a href="/products/<%= product.id %>/edit">Edit</a>
+      
       <h2><%= product.name %></h2>
 
       <p>Price: <%= product.price %></p>
