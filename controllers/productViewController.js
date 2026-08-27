@@ -65,7 +65,7 @@ export const updateProductFromForm = (req, res) => {
 export const deleteProductFromView = (req, res) => {
   const { id } = req.params;
 
-  const productIndex = products.findIndex((product) => product.id === id);
+  const productIndex = products.findIndex((product) => product.id === Number(id));
 
   if (productIndex === -1) {
     return res.status(404).send("Product not found");
