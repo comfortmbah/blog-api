@@ -30,6 +30,7 @@ export const createProductFromForm = (req, res) => {
   res.redirect("/products");
 }
 
+
 export const showEditProductForm = (req, res) => {
   const { id } = req.params;
 
@@ -60,3 +61,17 @@ export const updateProductFromForm = (req, res) => {
 
   res.redirect("/products");
 };
+
+export const deleteProductFromView = (req, res) => {
+  const { id } = req.params;
+
+  const productIndex = products.findIndex((product) => product.id === id);
+
+  if (productIndex === -1) {
+    return res.status(404).send("Product not found");
+  }
+
+  products.splice(productIndex, 1);
+
+  res.redirect("/products");
+}
