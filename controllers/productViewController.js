@@ -41,3 +41,22 @@ export const showEditProductForm = (req, res) => {
 
   res.render("products/edit", { product });
 }
+
+export const updateProductFromForm = (req, res) => {
+  const { id } = req.params;
+  const product = products.find(
+    (product) => product.id === Number(id)
+  );
+
+  if (!product) {
+    return res.status(404).send("Product not found");
+  }
+
+  const { name, price, category } = req.body;
+
+  product.name = name.trim();
+  product.price = Number(price);
+  product.category = category.trim();
+
+  res.redirect("/products");
+};
