@@ -29,3 +29,15 @@ export const createProductFromForm = (req, res) => {
 
   res.redirect("/products");
 }
+
+export const showEditProductForm = (req, res) => {
+  const { id } = req.params;
+
+  const product = products.find((product) => product.id === Number(id));
+
+  if (!product) {
+    return res.status(404).send("Product not found");
+  }
+
+  res.render("products/edit", { product });
+}
