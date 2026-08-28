@@ -17,7 +17,9 @@ export const validateProductForm = (view) => {
 
     if (errors.length > 0) {
       return res.status(400).render(view, {
-        errors, formData: req.body
+        errors, 
+        formData: req.body,
+        productId: req.params.id
       });
     }
     
