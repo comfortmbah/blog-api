@@ -10,9 +10,9 @@ router.get("/new", showCreateProductForm);
 
 router.get("/:id/edit", showEditProductForm);
 
-router.post("/", validateProductForm, createProductFromForm);
+router.post("/", validateProductForm("products/new"), createProductFromForm);
 
-router.post("/:id/edit", validateProductForm, updateProductFromForm);
+router.post("/:id/edit", validateProductForm("products/edit"), updateProductFromForm);
 
 router.post("/:id/delete", deleteProductFromView);
 
